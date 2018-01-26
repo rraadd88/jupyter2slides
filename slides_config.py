@@ -1,3 +1,4 @@
 c = get_config()
 
-c.Exporter.template_file = 'jupyter_template_noprompts'
+c.Exporter.template_file = 'jupyter_template'
+
