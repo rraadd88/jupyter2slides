@@ -6,6 +6,10 @@
  {% else %}
   {{ super() }}
  {% endif %}
+
+<div class="input_hidden">
+{{ super() }}
+</div>
 {% endblock input_group %}
 
 {% block header %}
@@ -38,6 +42,11 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
 
+$(document).ready(function(){
+  $(".output_wrapper").click(function(){
+      $(this).prev('.input_hidden').slideToggle();
+  });
+})
 </script>
 
 <!--[if lt IE 9]>
@@ -53,69 +62,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
     </style>
 {% endfor %}
 
-<style type="text/css">
-/* Overrides of notebook CSS for static HTML export */
-html {
-  overflow-y: visible;
-}
-.reveal {
-  font-size: 160%;
-}
-.reveal pre {
-  width: inherit;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-}
-.reveal pre code {
-  padding: 0px;
-}
-.reveal section img {
-  border: 0px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal i {
-  font-style: normal;
-  font-family: FontAwesome;
-  font-size: 2em;
-}
-.reveal .slides {
-  text-align: left;
-}
-.reveal.fade {
-  opacity: 1;
-}
-.reveal .progress {
-  position: static;
-}
-div.input_area {
-  padding: 0.06em;
-}
-div.code_cell {
-  background-color: transparent;
-}
-div.prompt {
-  width: 11ex;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  text-align: right;
-}
-div.output_area pre {
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-}
-div.output_prompt {
-  /* 5px right shift to account for margin in parent container */
-  margin: 5px 5px 0 0;
-}
-.rendered_html p {
-  text-align: inherit;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/custom.css">
 
 <!-- Add favicon -->
 <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
@@ -147,20 +94,69 @@ require(
             controls: true,
             progress: true,
             history: true,
+            width: '80%',
+            height: '100%',
             slideNumber: true,
-            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
-            // Optional libraries used to extend on reveal.js
-            dependencies: [
-                { src: "{{resources.reveal.url_prefix}}/lib/js/classList.js",
-                  condition: function() { return !document.body.classList; } },
-                { src: "{{resources.reveal.url_prefix}}/plugin/notes/notes.js",
-                  async: true,
-                  condition: function() { return !!document.body.classList; } },
-                { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(
-                  // Change footer here
-          '© 2016 Dat Tran.  All rights reserved.', 'rgba(255,255,255,0.5)'
-          ); } }
+            scroll: true
+            // Display controls in the bottom right corner
+            //controls: true,
+
+            // Display a presentation progress bar
+            progress: true,
+
+            // Push each slide change to the browser history
+            //history: false,
+
+            // Enable keyboard shortcuts for navigation
+            //keyboard: true,
+
+            // Enable touch events for navigation
+            //touch: true,
+
+            // Enable the slide overview mode
+            //overview: true,
+
+            // Vertical centering of slides
+            //center: true,
+
+            // Loop the presentation
+            //loop: false,
+
+            // Change the presentation direction to be RTL
+            //rtl: false,
+
+            // Number of milliseconds between automatically proceeding to the
+            // next slide, disabled when set to 0, this value can be overwritten
+            // by using a data-autoslide attribute on your slides
+            //autoSlide: 0,
+
+            // Enable slide navigation via mouse wheel
+            mouseWheel: false,
+
+            // Transition style
+            transition: 'fade', // default/concave/cube/page/concave/zoom/linear/fade/none
+
+            // Transition speed
+            //transitionSpeed: 'default', // default/fast/slow
+
+            // Transition style for full page backgrounds
+            //backgroundTransition: 'default', // default/linear/none
+
+            // Theme
+             theme: 'white' // available themes are in /css/theme
+          //   theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+          //   transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
+          //   // Optional libraries used to extend on reveal.js
+          //   dependencies: [
+          //       { src: "{{resources.reveal.url_prefix}}/lib/js/classList.js",
+          //         condition: function() { return !document.body.classList; } },
+          //       { src: "{{resources.reveal.url_prefix}}/plugin/notes/notes.js",
+          //         async: true,
+          //         condition: function() { return !!document.body.classList; } },
+          //       { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(
+          //         // Change footer here
+          // '© 2018 Rohan Dandage.', 'rgba(255,255,255,0.5)'
+          // ); } }
             ]
         });
         var update = function(event){
