@@ -28,12 +28,23 @@ body {
   text-shadow: none;
 }
 
-.reveal .slides > section,
-.reveal .slides > section > section {
-  line-height: 1.5;
-  font-weight: inherit;
-  font-size: 28px;
+.reveal .slides {
+  width: 90% !important;
+  height: 100% !important;
 }
+
+.reveal .slides>section {
+  /*line-height: 1.5;*/
+  width: 90% !important;
+  height: 100% !important;
+}
+
+.reveal .slides > section > section {
+  /*line-height: 1.5;*/
+  width: 90% !important;
+  /*height: 100% !important;*/
+}
+
 
 /*********************************************
  * HEADERS
