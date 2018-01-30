@@ -15,8 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <!-- General and theme style sheets -->
-<link rel="stylesheet" href="reveal.js-3.1.0/css/reveal.css">
-<link rel="stylesheet" href="css/custom.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -24,23 +24,41 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'reveal.js-3.1.0/css/print/pdf.css';
+        link.href = 'reveal.js/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
 
-$(document).ready(function(){
-  $(".output_wrapper").click(function(){
-      $(this).prev('.input_hidden').slideToggle();
-  });
-})
 </script>
 
 <!--[if lt IE 9]>
-<script src="reveal.js-3.1.0/lib/js/html5shiv.js"></script>
+<script src="reveal.js/lib/js/html5shiv.js"></script>
 <![endif]-->
 
+<!-- Loading the mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
 <!-- Get Font-awesome from cdn -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
 
 <style type="text/css">
     /*!
@@ -11754,17 +11772,80 @@ ul.typeahead-list > li > a {
     </style>
 
 
-<link rel="stylesheet" type="text/css" href="css/custom.css">
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+.reveal {
+  font-size: 160%;
+  overflow-y: scroll;
+}
+.reveal pre {
+  width: inherit;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.reveal pre code {
+  padding: 0px;
+}
+.reveal section img {
+  border: 0px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+.reveal i {
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: 2em;
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal.fade {
+  opacity: 1;
+}
+.reveal .progress {
+  position: static;
+}
+div.input_area {
+  padding: 0.06em;
+}
+div.code_cell {
+  background-color: transparent;
+}
+div.prompt {
+  width: 11ex;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  text-align: right;
+}
+div.output_area pre {
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+}
+div.output_prompt {
+  /* 5px right shift to account for margin in parent container */
+  margin: 5px 5px 0 0;
+}
+div.text_cell.rendered .rendered_html {
+  /* The H1 height seems miscalculated, we are just hidding the scrollbar */
+  overflow-y: hidden;
+}
+a.anchor-link {
+  /* There is still an anchor, we are only hidding it */
+  display: none;
+}
+.rendered_html p {
+  text-align: inherit;
+}
+</style>
 
-<!-- Add favicon -->
-<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
-
-<!-- Additional imports for plugins -->
-<link rel="stylesheet" href="plugin/title-footer/title-footer.css">
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="custom.css">
 
 </head>
-
-
 
 
 <body>
@@ -11774,27 +11855,6 @@ ul.typeahead-list > li > a {
 <div class="slides">
 <section><section>
 <div class="cell border-box-sizing code_cell rendered">
-
- 
-  <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># %%bash</span>
-<span class="c1"># # pip install nbpresent</span>
-<span class="c1"># # jupyter nbextension install nbpresent --py --overwrite</span>
-<span class="c1"># # jupyter nbextension enable nbpresent --py</span>
-<span class="c1"># # jupyter serverextension enable nbpresent --py</span>
-<span class="c1"># conda install -c conda-forge nbpresent</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
- 
-
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
@@ -11809,8 +11869,6 @@ ul.typeahead-list > li > a {
 
 </div>
 </div>
-</div>
-
 </div>
 
 </div></section></section><section><section><image>
@@ -11829,28 +11887,11 @@ ul.typeahead-list > li > a {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Headline-Slide">Headline Slide<a class="anchor-link" href="#Headline-Slide">&#182;</a></h1>
+<h1 id="Headline-Slide">Headline Slide<a class="anchor-link" href="#Headline-Slide">&#194;&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-
- 
-  <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;img/colorcontext.png&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
- 
-
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
@@ -11861,8 +11902,6 @@ ul.typeahead-list > li > a {
 
 </div>
 </div>
-</div>
-
 </div>
 
 <div class="output_wrapper">
@@ -12284,23 +12323,6 @@ width=400
 
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
-
- 
-  <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
-<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;2G8V00SkTvY&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
- 
-
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
@@ -12311,8 +12333,6 @@ width=400
 
 </div>
 </div>
-</div>
-
 </div>
 
 <div class="output_wrapper">
@@ -12344,24 +12364,6 @@ width=400
 
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
-
- 
-  <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;a docstring&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
- 
-
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
@@ -12373,8 +12375,6 @@ width=400
 
 </div>
 </div>
-</div>
-
 </div>
 
 </div></section><section>
@@ -12382,29 +12382,11 @@ width=400
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#182;</a></h1>
+<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#194;&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-
- 
-  <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;some numbers&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
- 
-
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
@@ -12416,8 +12398,6 @@ width=400
 
 </div>
 </div>
-</div>
-
 </div>
 
 <div class="output_wrapper">
@@ -12590,7 +12570,7 @@ gg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Fragment">Fragment<a class="anchor-link" href="#Fragment">&#182;</a></h1><p>Press the right arrow.</p>
+<h1 id="Fragment">Fragment<a class="anchor-link" href="#Fragment">&#194;&#182;</a></h1><p>Press the right arrow.</p>
 
 </div>
 </div>
@@ -12628,7 +12608,7 @@ gg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Markdown-Examples">Markdown Examples<a class="anchor-link" href="#Markdown-Examples">&#182;</a></h1><h4 id="Text">Text<a class="anchor-link" href="#Text">&#182;</a></h4><p>It's very easy to make some words <strong>bold</strong> and other words <em>italic</em> with Markdown. You can even <a href="http://google.com">link to Google!</a></p>
+<h1 id="Markdown-Examples">Markdown Examples<a class="anchor-link" href="#Markdown-Examples">&#194;&#182;</a></h1><h4 id="Text">Text<a class="anchor-link" href="#Text">&#194;&#182;</a></h4><p>It's very easy to make some words <strong>bold</strong> and other words <em>italic</em> with Markdown. You can even <a href="http://google.com">link to Google!</a></p>
 
 </div>
 </div>
@@ -12637,7 +12617,7 @@ gg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#182;</a></h1><h4 id="Code">Code<a class="anchor-link" href="#Code">&#182;</a></h4><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;JavaScript syntax highlighting&quot;</span><span class="p">;</span>
+<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#194;&#182;</a></h1><h4 id="Code">Code<a class="anchor-link" href="#Code">&#194;&#182;</a></h4><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;JavaScript syntax highlighting&quot;</span><span class="p">;</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Python syntax highlighting&quot;</span>
@@ -12654,7 +12634,7 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Python-example">Python example<a class="anchor-link" href="#Python-example">&#182;</a></h1><h4 id="Code">Code<a class="anchor-link" href="#Code">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># This program adds up integers in the command line</span>
+<h1 id="Python-example">Python example<a class="anchor-link" href="#Python-example">&#194;&#182;</a></h1><h4 id="Code">Code<a class="anchor-link" href="#Code">&#194;&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># This program adds up integers in the command line</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
@@ -12670,7 +12650,7 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#182;</a></h1><h4 id="Lists">Lists<a class="anchor-link" href="#Lists">&#182;</a></h4><p>Sometimes you want numbered lists:</p>
+<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#194;&#182;</a></h1><h4 id="Lists">Lists<a class="anchor-link" href="#Lists">&#194;&#182;</a></h4><p>Sometimes you want numbered lists:</p>
 <ol>
 <li>Item 1</li>
 <li>Item 2</li>
@@ -12688,7 +12668,7 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#182;</a></h1><h4 id="Lists">Lists<a class="anchor-link" href="#Lists">&#182;</a></h4><p>Sometimes you want bullet points:</p>
+<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#194;&#182;</a></h1><h4 id="Lists">Lists<a class="anchor-link" href="#Lists">&#194;&#182;</a></h4><p>Sometimes you want bullet points:</p>
 <ul>
 <li>Item 1</li>
 <li>Item 2<ul>
@@ -12706,11 +12686,11 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#182;</a></h1><h4 id="Blockquotes">Blockquotes<a class="anchor-link" href="#Blockquotes">&#182;</a></h4><p>As Kanye West said:</p>
+<h1 id="Headline-Subslide">Headline Subslide<a class="anchor-link" href="#Headline-Subslide">&#194;&#182;</a></h1><h4 id="Blockquotes">Blockquotes<a class="anchor-link" href="#Blockquotes">&#194;&#182;</a></h4><p>As Kanye West said:</p>
 <blockquote><p>We're living the future so
 the present is our past.</p>
 </blockquote>
-<h4 id="inline-code">inline code<a class="anchor-link" href="#inline-code">&#182;</a></h4><p>I think you should use an
+<h4 id="inline-code">inline code<a class="anchor-link" href="#inline-code">&#194;&#182;</a></h4><p>I think you should use an
 <code>&lt;addr&gt;</code> element here instead.</p>
 
 </div>
@@ -12720,7 +12700,7 @@ the present is our past.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Table">Table<a class="anchor-link" href="#Table">&#182;</a></h1><table>
+<h1 id="Table">Table<a class="anchor-link" href="#Table">&#194;&#182;</a></h1><table>
 <thead><tr>
 <th>Tables</th>
 <th style="text-align:center">Are</th>
@@ -12753,7 +12733,7 @@ the present is our past.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Images">Images<a class="anchor-link" href="#Images">&#182;</a></h1><p>If you want to embed images, this is how you do it:</p>
+<h1 id="Images">Images<a class="anchor-link" href="#Images">&#194;&#182;</a></h1><p>If you want to embed images, this is how you do it:</p>
 <p><img src="img/colorcontext.png" alt="Color"></p>
 
 </div>
@@ -12763,7 +12743,7 @@ the present is our past.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Links">Links<a class="anchor-link" href="#Links">&#182;</a></h1><ul>
+<h1 id="Links">Links<a class="anchor-link" href="#Links">&#194;&#182;</a></h1><ul>
 <li><p><a href="https://guides.github.com/features/mastering-markdown/">https://guides.github.com/features/mastering-markdown/</a></p>
 </li>
 <li><p><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></p>
@@ -12792,8 +12772,8 @@ require(
       waitSeconds: 15
     },
     [
-      "reveal.js-3.1.0/lib/js/head.min.js",
-      "reveal.js-3.1.0/js/reveal.js"
+      "reveal.js/lib/js/head.min.js",
+      "reveal.js/js/reveal.js"
     ],
 
     function(head, Reveal){
@@ -12809,9 +12789,9 @@ require(
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
-                { src: "reveal.js-3.1.0/lib/js/classList.js",
+                { src: "reveal.js/lib/js/classList.js",
                   condition: function() { return !document.body.classList; } },
-                { src: "reveal.js-3.1.0/plugin/notes/notes.js",
+                { src: "reveal.js/plugin/notes/notes.js",
                   async: true,
                   condition: function() { return !!document.body.classList; } }
             ]
@@ -12836,106 +12816,6 @@ require(
 </script>
 
 </body>
-
-
-
-<script>
-require(
-    {
-      // it makes sense to wait a little bit when you are loading
-      // reveal from a cdn in a slow connection environment
-      waitSeconds: 15
-    },
-    [
-      "reveal.js-3.1.0/lib/js/head.min.js",
-      "reveal.js-3.1.0/js/reveal.js"
-    ],
-    function(head, Reveal){
-        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-            width: '80%',
-            height: '100%',
-            slideNumber: true,
-            scroll: true
-            // Display controls in the bottom right corner
-            //controls: true,
-
-            // Display a presentation progress bar
-            progress: true,
-
-            // Push each slide change to the browser history
-            //history: false,
-
-            // Enable keyboard shortcuts for navigation
-            //keyboard: true,
-
-            // Enable touch events for navigation
-            //touch: true,
-
-            // Enable the slide overview mode
-            //overview: true,
-
-            // Vertical centering of slides
-            //center: true,
-
-            // Loop the presentation
-            //loop: false,
-
-            // Change the presentation direction to be RTL
-            //rtl: false,
-
-            // Number of milliseconds between automatically proceeding to the
-            // next slide, disabled when set to 0, this value can be overwritten
-            // by using a data-autoslide attribute on your slides
-            //autoSlide: 0,
-
-            // Enable slide navigation via mouse wheel
-            mouseWheel: false,
-
-            // Transition style
-            transition: 'fade', // default/concave/cube/page/concave/zoom/linear/fade/none
-
-            // Transition speed
-            //transitionSpeed: 'default', // default/fast/slow
-
-            // Transition style for full page backgrounds
-            //backgroundTransition: 'default', // default/linear/none
-
-            // Theme
-             theme: 'white' // available themes are in /css/theme
-          //   theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-          //   transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
-          //   // Optional libraries used to extend on reveal.js
-          //   dependencies: [
-          //       { src: "reveal.js-3.1.0/lib/js/classList.js",
-          //         condition: function() { return !document.body.classList; } },
-          //       { src: "reveal.js-3.1.0/plugin/notes/notes.js",
-          //         async: true,
-          //         condition: function() { return !!document.body.classList; } },
-          //       { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(
-          //         // Change footer here
-          // '© 2018 Rohan Dandage.', 'rgba(255,255,255,0.5)'
-          // ); } }
-            ]
-        });
-        var update = function(event){
-          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
-            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
-          }
-        };
-        Reveal.addEventListener('slidechanged', update);
-        Reveal.addEventListener('fragmentshown', update);
-        Reveal.addEventListener('fragmenthidden', update);
-        var update_scroll = function(event){
-          $(".reveal").scrollTop(0);
-        };
-        Reveal.addEventListener('slidechanged', update_scroll);
-    }
-);
-</script>
 
 
 </html>
