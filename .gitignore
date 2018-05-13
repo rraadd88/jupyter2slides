@@ -2,6 +2,9 @@
 17*
 18*
 19*
+*_b17*
+*_b18*
+*_b19*
 test/
 figs/*
 # Created by .ignore support plugin (hsz.mobi)
@@ -31,6 +34,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.Rhistory
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
